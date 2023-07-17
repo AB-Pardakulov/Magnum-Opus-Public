@@ -1,5 +1,4 @@
-discord_token:         MTEyNzMxMzY2NDM3OTE5NTQzMw.GR8MCr.g-i3_4CWHdO1EwaO79mHO0UxEwcE7pXnmQanA4
-
-palm_API: 
-serp_api: 
+discord_token: None
+palm_API: None
+serp_api: None
 
