@@ -2,7 +2,7 @@
 Advanced Multi-Function Discord bot with AI and Search Capabilities
 
 Setup:
-Make sure you have PIP installed on your system/virtual environment and install the following packages. \n
+Make sure you have PIP installed on your system/virtual environment and install the following packages.
 `pip install Discord`
 `pip install google-generativeai`
 `pip install google-serp-api`
