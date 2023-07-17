@@ -2,3 +2,4 @@ discord_token: None
 palm_API: None
 serp_api: None
 
+# This is where user-specific keys are stored. You can edit them here or through the magnum_bot.py startup.
