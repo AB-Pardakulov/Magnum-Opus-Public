@@ -249,6 +249,7 @@ messages_str  + " Use indicators in their name, join date, and especially messag
   except Exception as e:
     embed=discord.Embed(title="Error in Response", description="Check your inputs and try again." + " Error: " + e, color=0xFF00FF)
     await interaction.response.send_message(embed=embed)
+    await interaction.followup.send("Bot Host may have not provided PaLM API key to this script.")
 @tree.command(name = "palm-chat", description = "Interact with the Palm API")
 async def palm_chat(interaction: discord.Interaction, message: str):
   try:
@@ -264,6 +265,7 @@ async def palm_chat(interaction: discord.Interaction, message: str):
     except:
       print("No response.")
     await interaction.response.send_message("Error: " + e)
+    await interaction.followup.send("Bot Host may have not provided PaLM API key to this script.")
 @tree.command(name = "palm-respond", description = "Ask the Palm API to respond to the chat.")
 async def palm_respond(interaction: discord.Interaction, message: str):
   try:
@@ -288,6 +290,7 @@ async def palm_respond(interaction: discord.Interaction, message: str):
       await interaction.followup.send(embed=embed)
     except Exception as e:
       await interaction.followup.send("**Error: **" + str(e))
+      await interaction.followup.send("Bot Host may have not provided PaLM API key to this script.")
       
 @tree.command(name = "google-image", description = "Search in the Google Images database. Max 5 images.")
 async def google_image(interaction: discord.Interaction, message: str, amount: str):
