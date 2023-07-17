@@ -1,0 +1,4 @@
+discord_token: None
+palm_API: None
+serp_api: None
+
