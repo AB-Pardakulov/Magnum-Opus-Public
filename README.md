@@ -2,10 +2,11 @@
 Advanced Multi-Function Discord bot with AI and Search Capabilities
 
 Setup:
-pip install Discord
-pip install google-generativeai
-pip install google-serp-api
-pip install google-search-results
+Make sure you have PIP installed on your system/virtual environment and install the following packages. 
+`pip install Discord`
+`pip install google-generativeai`
+`pip install google-serp-api`
+`pip install google-search-results`
 
 Requires access to your own Discord Bot. 
 
