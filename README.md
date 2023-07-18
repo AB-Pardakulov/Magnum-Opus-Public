@@ -1,5 +1,5 @@
 # Magnum-Opus-Public
-Advanced Multi-Function Discord bot with AI and Search Capabilities
+A multi-function Discord bot running Python with optional AI and google search Capabilities
 
 Setup:
 Make sure you have PIP installed on your system/virtual environment and install the following packages.
