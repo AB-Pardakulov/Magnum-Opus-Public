@@ -120,7 +120,7 @@ async def registermute(interaction: discord.Interaction, role: discord.Role):
     embed=discord.Embed(title="Int Error", description="You need to provide a proper ID", color=0xFFFF00)
     await interaction.response.send_message(embed=embed)
     
-@tree.command(name='mute-user', description='Mute/Unmute a User (Global, use this)')
+@tree.command(name='mute-user', description='Mute/Unmute a User')
 @has_permissions(manage_roles=True)
 async def mute_change(interaction: discord.Interaction ,member:discord.Member,mute: bool):
   server_id = interaction.guild.id
@@ -150,7 +150,7 @@ async def mute_change(interaction: discord.Interaction ,member:discord.Member,mu
     embed=discord.Embed(title="Unmute Successful", description=member.name + " has been unmuted.", color=0xFFFF00)
   await interaction.response.send_message(embed=embed)
 
-@tree.command(name = "global-warn", description = "Warn someone")
+@tree.command(name = "magnum-warn", description = "Warn someone")
 @has_permissions(manage_messages=True)
 async def global_warn(interaction: discord.Interaction, member:discord.Member, reason: str):
   user = interaction.user
