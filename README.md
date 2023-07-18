@@ -1,4 +1,4 @@
-# MagnumOpus_Public
+# Magnum-Opus-Public
 Advanced Multi-Function Discord bot with AI and Search Capabilities
 
 Setup:
