@@ -18,11 +18,3 @@ First startup: Make sure to provide the correct keys, the commands requiring opt
 
 The Serp API and PaLM API keys can be retrieved from their respective services.
 
-Add the official Magnum Opus to your server(s): https://discord.com/api/oauth2/authorize?client_id=1127313664379195433&permissions=21432693161203&scope=bot%20applications.commands
-
-**The currently required permissions are subject to change as more commands are developed.**
-
-
-
-
-
