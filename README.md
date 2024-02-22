@@ -3,7 +3,7 @@
 
 *Requires the Discord Developer Portal.* 
 
-**Setup ~**
+**Setup**
 
 *Please ensure you have PIP installed on your system/virtual environment and install the following packages.*
 
