@@ -1,9 +1,11 @@
 # Magnum-Opus-Public
-A multi-function Discord bot powered by Python with optional AI and Google search capabilities
+### A multi-function Discord bot powered by Python with optional AI and Google search capabilities
 
-Setup ~
+*Requires the Discord Developer Portal.* 
 
-Please ensure you have PIP installed on your system/virtual environment and install the following packages.
+**Setup ~**
+
+*Please ensure you have PIP installed on your system/virtual environment and install the following packages.*
 
 `pip install Discord`
 
@@ -12,8 +14,6 @@ Please ensure you have PIP installed on your system/virtual environment and inst
 `pip install google-serp-api`
 
 `pip install google-search-results`
-
-Requires the Discord Developer Portal. 
 
 First startup ~ Please ensure to provide the correct keys, the commands requiring optional keys will not work and should be removed from the script and synced using /server-sync or startup sync.
 
