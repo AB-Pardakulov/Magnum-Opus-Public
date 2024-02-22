@@ -17,7 +17,7 @@ pip install google-serp-api
 pip install google-search-results
 ```
 
-First startup ~ Please ensure to provide the correct keys, the commands requiring optional keys will not work and should be removed from the script and synced using /server-sync or startup sync.
+First startup ~ Please ensure to provide the correct keys, the commands requiring optional keys will not work and should be removed from the script and synced using `/server-sync` or startup sync.
 
-The Serp API and PaLM API keys can be retrieved from https://serpapi.com/ and https://aistudio.google.com (formerly Google Makersuite). 
+The Serp API and PaLM API keys can be retrieved from https://serpapi.com/ and https://aistudio.google.com *(formerly Google Makersuite)*. 
 
