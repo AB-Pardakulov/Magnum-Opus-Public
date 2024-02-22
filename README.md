@@ -5,7 +5,7 @@
 
 **Setup**
 
-*Please ensure you have PIP installed on your system/virtual environment and install the following packages.*
+*Please ensure you have PIP and Python 3.x installed on your system/virtual environment and install the following packages.*
 
 ```
 pip install Discord
