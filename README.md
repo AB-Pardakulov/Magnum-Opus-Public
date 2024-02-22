@@ -7,13 +7,15 @@
 
 *Please ensure you have PIP installed on your system/virtual environment and install the following packages.*
 
-```pip install Discord
+```
+pip install Discord
 
 pip install google-generativeai
 
 pip install google-serp-api
 
-pip install google-search-results```
+pip install google-search-results
+```
 
 First startup ~ Please ensure to provide the correct keys, the commands requiring optional keys will not work and should be removed from the script and synced using /server-sync or startup sync.
 
