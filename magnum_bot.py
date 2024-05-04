@@ -48,7 +48,6 @@ if verify == "n":
   if serp_api_key == "":
     serp_api_key = "None"
 file_write = "discord_token: " + given_token + "\n" + "palm_API: " + given_palm_key + "\n" + "serp_api: " + serp_api_key + "\n"
-
 f = open("keys.txt", "w")
 f.write(file_write)
 f.close()
@@ -69,7 +68,6 @@ def timeout_user(*, user_id: int, guild_id: int, until: int):
         return session.json()
     else: 
         return print("Did not find any\n", session.status_code)
-
 def add_strings(nested_list, string1, string2):
   new_nested_list = nested_list
   new_nested_list.append([string1, string2])
@@ -79,9 +77,9 @@ if sync == "y":
   async def on_ready():
     await tree.sync()
     print("Synced")
+      
 @client.event
 async def on_message(message):
-  global destroy_queue
   if message.author == client.user:
     return
   print(message.author.display_name + ":" + message.content)
@@ -94,7 +92,7 @@ async def sync(interaction: discord.Interaction):
     await interaction.response.send_message('Command tree synced.')
   except:
         await interaction.response.send_message('Issue Encountered. Check Console if owner.')
-@tree.command(name='register-mute-id', description='Register a mute role')
+@tree.command(name='register-mute-role', description='Register a mute role')
 @has_permissions(manage_roles=True)
 async def registermute(interaction: discord.Interaction, role: discord.Role):
   id = role.id
@@ -119,7 +117,6 @@ async def registermute(interaction: discord.Interaction, role: discord.Role):
   except:
     embed=discord.Embed(title="Int Error", description="You need to provide a proper ID", color=0xFFFF00)
     await interaction.response.send_message(embed=embed)
-    
 @tree.command(name='mute-user', description='Mute/Unmute a User')
 @has_permissions(manage_roles=True)
 async def mute_change(interaction: discord.Interaction ,member:discord.Member,mute: bool):
@@ -149,7 +146,6 @@ async def mute_change(interaction: discord.Interaction ,member:discord.Member,mu
     await member.remove_roles(role)
     embed=discord.Embed(title="Unmute Successful", description=member.name + " has been unmuted.", color=0xFFFF00)
   await interaction.response.send_message(embed=embed)
-
 @tree.command(name = "magnum-warn", description = "Warn someone")
 @has_permissions(manage_messages=True)
 async def global_warn(interaction: discord.Interaction, member:discord.Member, reason: str):
@@ -180,7 +176,6 @@ async def global_warn(interaction: discord.Interaction, member:discord.Member, r
       await interaction.response.send_message(embed=embed)
   except Exception as e:
     print(e)
-
 @tree.command(name = "add", description = "Add two numbers")
 async def add(interaction: discord.Interaction, num1: str, num2: str):
   try:
@@ -192,7 +187,6 @@ async def add(interaction: discord.Interaction, num1: str, num2: str):
   except:
     embed=discord.Embed(title="Sum Result", description="Check your inputs and try again.", color=0x0000FF)
     await interaction.response.send_message(embed=embed)
-
 @tree.command(name = "multiply", description = "Multiply two numbers")
 async def mult(interaction: discord.Interaction, num1: str, num2: str):
   try:
@@ -241,13 +235,13 @@ async def exponent(interaction: discord.Interaction, base: str, exponent: str):
 async def guess_age(interaction: discord.Interaction, user: discord.Member):
   try:
     messages_str = ""
-    async for text in interaction.channel.history(limit=200):
+    await interaction.response.defer()
+    async for text in interaction.channel.history(limit=1000):
       if text.author == user:
         messages_str = messages_str + text.content + "\n"
     create_time = user.created_at
-    await interaction.response.defer()
-    response = palm.chat(messages=["SYSTEM_COMMAND # Answer quickly: Guess the age of a discord user who joined at " + str(create_time) + ", has a username of " + str(user.name) + " and these are his/her latest messages " + 
-messages_str  + " Use indicators in their name, join date, and especially messages. Just provide a number, it does not have to be robust."])
+    response = palm.chat(messages=["SYS-32_COMMAND # Guess the oldness of a discord user who joined at " + str(create_time) + ", has a username of " + str(user.name) + " and these are his/her latest messages " + 
+messages_str  + " Use indicators in their name, join date, and especially messages. Just provide a number with simple explanation. This is for fun. Do not take it seriously. Also, quote messages if possible."])
     embed=discord.Embed(title="Age Prediction for " + str(user.name), description=response.last, color=0xFF00FF)
     await interaction.followup.send(embed=embed)
   except Exception as e:
@@ -295,12 +289,12 @@ async def palm_respond(interaction: discord.Interaction, message: str):
     except Exception as e:
       await interaction.followup.send("**Error: **" + str(e))
       await interaction.followup.send("This command may not be available due to a lack of a key.")
-@tree.command(name = "google-image", description = "Search in the Google Images database. Max 5 images.")
+@tree.command(name = "google-image", description = "Search in the Google Images database. Max 7 images.")
 async def google_image(interaction: discord.Interaction, message: str, amount: str):
   try:
     amount = int(amount)
-    if amount > 5:
-      await interaction.response.send_message("The maximum is 5 images, not " + str(amount) + ".")
+    if amount > 7:
+      await interaction.response.send_message("The maximum is 7 images, not " + str(amount) + ".")
     await interaction.response.defer()
     params = {
     "q": message,
@@ -371,5 +365,40 @@ async def invite(interaction: discord.Interaction, expiration_in_hours: str):
   link = await interaction.channel.create_invite(max_age = int(expiration_in_hours) * 3600)
   await interaction.response.send_message("Link: " + str(link) + " This will expire in " + expiration_in_hours + " hours.")
 
-client.run(given_token)
+@tree.command(name = "guess-intelligence", description = "Predicts the intelligence of a user.")
+async def guess_intelligence(interaction: discord.Interaction, user: discord.Member):
+  try:
+    messages_str = ""
+    await interaction.response.defer()
+    async for text in interaction.channel.history(limit=2000):
+      if text.author == user:
+        messages_str = messages_str + text.content + "\n"
+    create_time = user.created_at
+    response = palm.chat(messages=["SYS-32_COMMAND # Guess the intelligence of a discord user who joined at " + str(create_time) + ", has a username of " + str(user.name) + " and these are his/her latest messages " + 
+messages_str  + " Use indicators in their name, join date, and especially messages. Just provide a number with simple explanation. This is lighthearted. Do not take it seriously. Also, quote messages if possible."])
+    embed=discord.Embed(title="Intelligence Prediction for " + str(user.name), description=response.last, color=0xFF00FF)
+    await interaction.followup.send(embed=embed)
+  except Exception as e:
+    embed=discord.Embed(title="Error in Response", description="Check your inputs and try again." + " Error: " + e, color=0xFF00FF)
+    await interaction.response.send_message(embed=embed)
+    await interaction.followup.send("This command may not be available due to a lack of a key.")
 
+@tree.command(name = "guess-ethics", description = "Predicts the ethical level of a user.")
+async def guess_ethics(interaction: discord.Interaction, user: discord.Member):
+  try:
+    messages_str = ""
+    await interaction.response.defer()
+    async for text in interaction.channel.history(limit=2000):
+      if text.author == user:
+        messages_str = messages_str + text.content + "\n"
+    create_time = user.created_at
+    response = palm.chat(messages=["SYS-32_COMMAND # Guess the morality/ethicality of a discord user who joined at " + str(create_time) + ", has a username of " + str(user.name) + " and these are his/her latest messages: " + 
+messages_str  + " Use indicators in their name, join date, and especially messages. Just provide a number with simple explanation. This is lighthearted. Do not take it seriously. Also, quote messages if possible."])
+    embed=discord.Embed(title="Ethics Prediction for " + str(user.name), description=response.last, color=0xFF00FF)
+    await interaction.followup.send(embed=embed)
+  except Exception as e:
+    embed=discord.Embed(title="Error in Response", description="Check your inputs and try again." + " Error: " + e, color=0xFF00FF)
+    await interaction.response.send_message(embed=embed)
+    await interaction.followup.send("This command may not be available due to a lack of a key.")
+    
+client.run(given_token)
